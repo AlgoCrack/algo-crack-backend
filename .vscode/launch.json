@@ -1,33 +1,20 @@
 {
-    // Use IntelliSense to learn about possible attributes.
-    // Hover to view descriptions of existing attributes.
-    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
-    "version": "0.2.0",
-    "configurations": [
-        {
-            "type": "java",
-            "name": "AuthService",
-            "request": "launch",
-            "mainClass": "com.auth.AuthService"
-        },
-        {
-            "type": "java",
-            "name": "ApiGateWayService",
-            "request": "launch",
-            "mainClass": "com.gateway.ApiGatewayService"
-        },
-        {
-            "type": "java",
-            "name": "ProblemService",
-            "request": "launch",
-            "mainClass": "com.problem.ProblemService"
-        },
-        {
-            "type": "java",
-            "name": "EurekaServerApplication",
-            "request": "launch",
-            "mainClass": "com.tp.EurekaServerApplication",
-            "projectName": "eureka-server"
-        }
-    ]
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "algo-crack-backend",
+      "type": "node",
+      "request": "launch",
+      "cwd": "${workspaceRoot}/algo-crack-backend",
+      "runtimeExecutable": "${workspaceRoot}/algo-crack-backend/node_modules/.bin/ts-node-dev",
+      "runtimeArgs": ["-r", "tsconfig-paths/register"],
+      "args": ["${workspaceRoot}/algo-crack-backend/src/main.ts"],
+      "restart": true,
+      "env": { "NODE_ENV": "dev" },
+      "console": "integratedTerminal",
+    }
+  ],
 }

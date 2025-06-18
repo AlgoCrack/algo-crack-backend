@@ -16,6 +16,12 @@ async function bootstrap() {
   SwaggerModule.setup('api', app, document); // ← 預設路徑就是 /api
 
   await app.listen(process.env.PORT ?? 3000);
+  console.log(
+    `Application is running on: http://localhost:${process.env.PORT ?? 3000}`,
+  );
+  console.log(
+    `Swagger is running on: http://localhost:${process.env.PORT ?? 3000}/api`,
+  );
 }
 
 void bootstrap();
