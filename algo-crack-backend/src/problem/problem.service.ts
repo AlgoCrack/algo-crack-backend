@@ -69,7 +69,7 @@ export class ProblemService {
     }
   }
 
-  async remove(id: number) {
+  async remove(id: number): Promise<void> {
     try {
       await axios.delete(`${this.problemServiceUrl}/api/problem/${id}`);
     } catch (error) {
