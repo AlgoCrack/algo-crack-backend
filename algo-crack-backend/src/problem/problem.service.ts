@@ -5,12 +5,18 @@ import { Problem, UpdateProblemReq } from './problem.dto';
 
 @Injectable()
 export class ProblemService {
+  private problemServiceUrl =
+    process.env.PROBLEM_SERVICE_URL || 'http://localhost:3001';
+
   async create(title: string, description: string): Promise<Problem> {
     try {
-      const response = await axios.post(`http://localhost:3001/api/problem`, {
-        title,
-        description,
-      });
+      const response = await axios.post(
+        `${this.problemServiceUrl}/api/problem`,
+        {
+          title,
+          description,
+        },
+      );
       return response.data as Problem;
     } catch (error) {
       handleAxiosError(error);
@@ -19,7 +25,7 @@ export class ProblemService {
 
   async findAll(): Promise<Problem[]> {
     try {
-      const response = await axios.get(`http://localhost:3001/api/problem`);
+      const response = await axios.get(`${this.problemServiceUrl}/api/problem`);
       return response.data as Problem[];
     } catch (error) {
       handleAxiosError(error);
@@ -29,7 +35,7 @@ export class ProblemService {
   async findOne(id: number): Promise<Problem> {
     try {
       const response = await axios.get(
-        `http://localhost:3001/api/problem/${id}`,
+        `${this.problemServiceUrl}/api/problem/${id}`,
       );
       return response.data as Problem;
     } catch (error) {
@@ -54,7 +60,7 @@ export class ProblemService {
       }
 
       const response = await axios.patch(
-        `http://localhost:3001/api/problem/${id}`,
+        `${this.problemServiceUrl}/api/problem/${id}`,
         data,
       );
       return response.data as Problem;
@@ -65,7 +71,7 @@ export class ProblemService {
 
   async remove(id: number) {
     try {
-      await axios.delete(`http://localhost:3001/api/problem/${id}`);
+      await axios.delete(`${this.problemServiceUrl}/api/problem/${id}`);
     } catch (error) {
       handleAxiosError(error);
     }
