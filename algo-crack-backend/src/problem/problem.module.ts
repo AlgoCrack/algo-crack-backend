@@ -6,5 +6,6 @@ import { ProblemController } from './problem.controller';
   imports: [],
   controllers: [ProblemController],
   providers: [ProblemService],
+  exports: [ProblemService],
 })
 export class ProblemModule {}

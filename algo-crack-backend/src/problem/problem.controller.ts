@@ -19,19 +19,22 @@ export class ProblemController {
   constructor(private readonly problemService: ProblemService) {}
 
   @Post()
+  @UsePipes(ValidationPipe)
   async create(@Body() body: CreateProblemReq): Promise<Problem> {
-    const { title, description } = body;
-    const res = await this.problemService.create(title, description);
+    const { title, description, testCases } = body;
+    const res = await this.problemService.create(title, description, testCases);
     return res;
   }
 
   @Get()
+  @UsePipes(ValidationPipe)
   async findAll(): Promise<Problem[]> {
     const res = await this.problemService.findAll();
     return res;
   }
 
   @Get(':id')
+  @UsePipes(ValidationPipe)
   async findOne(@Param('id', ParseIntPipe) id: number): Promise<Problem> {
     const problem = await this.problemService.findOne(id);
     if (!problem) {
@@ -41,7 +44,7 @@ export class ProblemController {
   }
 
   @Patch(':id')
-  @UsePipes(new ValidationPipe())
+  @UsePipes(ValidationPipe)
   async update(
     @Param('id', ParseIntPipe) id: number,
     @Body() body: UpdateProblemReq,
@@ -52,6 +55,7 @@ export class ProblemController {
   }
 
   @Delete(':id')
+  @UsePipes(ValidationPipe)
   async remove(@Param('id', ParseIntPipe) id: number): Promise<void> {
     await this.problemService.remove(id);
   }
