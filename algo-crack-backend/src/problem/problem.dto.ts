@@ -70,6 +70,11 @@ export class UpdateProblemReq {
   @IsString()
   @IsOptional()
   description?: string;
+
+  @ApiProperty({ description: 'test case', example: {} })
+  @IsArray()
+  @IsOptional()
+  testCases?: TestCasesDto[];
 }
 
 export class TestCasesDto {

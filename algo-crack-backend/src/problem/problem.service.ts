@@ -49,25 +49,11 @@ export class ProblemService {
     }
   }
 
-  async update(
-    id: number,
-    title?: string,
-    description?: string,
-  ): Promise<Problem> {
+  async update(id: number, problem: UpdateProblemReq): Promise<Problem> {
     try {
-      const data: UpdateProblemReq = {};
-
-      if (title) {
-        data.title = title;
-      }
-
-      if (description) {
-        data.description = description;
-      }
-
       const response = await axios.patch<Problem>(
         `${this.problemServiceUrl}/api/problem/${id}`,
-        data,
+        problem,
       );
       return response.data;
     } catch (error) {

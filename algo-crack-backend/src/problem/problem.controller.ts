@@ -49,8 +49,7 @@ export class ProblemController {
     @Param('id', ParseIntPipe) id: number,
     @Body() body: UpdateProblemReq,
   ): Promise<Problem> {
-    const { title, description } = body;
-    const res = await this.problemService.update(id, title, description);
+    const res = await this.problemService.update(id, body);
     return res;
   }
 
