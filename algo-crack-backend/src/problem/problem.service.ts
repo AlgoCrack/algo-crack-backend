@@ -27,10 +27,10 @@ export class ProblemService {
     }
   }
 
-  async findAll(): Promise<Problem[]> {
+  async findAll(page: number, pageSize: number): Promise<Problem[]> {
     try {
       const response = await axios.get<Problem[]>(
-        `${this.problemServiceUrl}/api/problem`,
+        `${this.problemServiceUrl}/api/problem?page=${page}&pageSize=${pageSize}`,
       );
       return response.data;
     } catch (error) {

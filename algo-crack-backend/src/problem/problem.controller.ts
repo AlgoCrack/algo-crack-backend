@@ -8,6 +8,7 @@ import {
   ParseIntPipe,
   Patch,
   Post,
+  Query,
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
@@ -28,8 +29,13 @@ export class ProblemController {
 
   @Get()
   @UsePipes(ValidationPipe)
-  async findAll(): Promise<Problem[]> {
-    const res = await this.problemService.findAll();
+  async findAll(
+    @Query('page') pageStr: string,
+    @Query('pageSize') pageSizeStr: string,
+  ): Promise<Problem[]> {
+    const page = parseInt(pageStr) || 1;
+    const pageSize = parseInt(pageSizeStr) || 10;
+    const res = await this.problemService.findAll(page, pageSize);
     return res;
   }
 
