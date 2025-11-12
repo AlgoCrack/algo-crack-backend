@@ -22,8 +22,13 @@ export class ProblemController {
   @Post()
   @UsePipes(ValidationPipe)
   async create(@Body() body: CreateProblemReq): Promise<Problem> {
-    const { title, description, testCases } = body;
-    const res = await this.problemService.create(title, description, testCases);
+    const { title, description, testCases, levelOfDifficulty } = body;
+    const res = await this.problemService.create(
+      title,
+      description,
+      levelOfDifficulty,
+      testCases,
+    );
     return res;
   }
 

@@ -1,7 +1,12 @@
 import { Injectable } from '@nestjs/common';
 import axios from 'axios';
 import { handleAxiosError } from 'src/utils/error-utils';
-import { Problem, TestCasesDto, UpdateProblemReq } from './problem.dto';
+import {
+  LevelOfDifficulty,
+  Problem,
+  TestCasesDto,
+  UpdateProblemReq,
+} from './problem.dto';
 
 @Injectable()
 export class ProblemService {
@@ -10,6 +15,7 @@ export class ProblemService {
   async create(
     title: string,
     description: string,
+    levelOfDifficulty: LevelOfDifficulty,
     testCases: TestCasesDto[],
   ): Promise<Problem> {
     try {
@@ -18,6 +24,7 @@ export class ProblemService {
         {
           title,
           description,
+          levelOfDifficulty,
           testCases,
         },
       );

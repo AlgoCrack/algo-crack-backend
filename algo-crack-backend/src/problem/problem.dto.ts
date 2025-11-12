@@ -34,6 +34,12 @@ class TestCase {
   updatedAt: Date;
 }
 
+export enum LevelOfDifficulty {
+  EASY = 'easy',
+  MEDIUMN = 'mediumn',
+  HARD = 'hard',
+}
+
 export class Problem {
   @ApiProperty({ description: 'problem id', example: 1 })
   @IsInt()
@@ -46,6 +52,10 @@ export class Problem {
   @ApiProperty({ description: 'problem description', example: '1 + 1 = ?' })
   @IsString()
   description: string;
+
+  @ApiProperty({ description: 'level of difficulty', example: 'easy' })
+  @IsString()
+  levelOfDifficulty: LevelOfDifficulty;
 
   @ApiProperty({ description: 'created time', example: new Date() })
   @IsDate()
@@ -71,6 +81,10 @@ export class UpdateProblemReq {
   @IsOptional()
   description?: string;
 
+  @ApiProperty({ description: 'level of difficulty', example: 'easy' })
+  @IsString()
+  levelOfDifficulty: LevelOfDifficulty;
+
   @ApiProperty({ description: 'test case', example: {} })
   @IsArray()
   @IsOptional()
@@ -95,6 +109,10 @@ export class CreateProblemReq {
   @ApiProperty({ description: 'problem description', example: '1 + 1 = ?' })
   @IsString()
   description: string;
+
+  @ApiProperty({ description: 'level of difficulty', example: 'easy' })
+  @IsString()
+  levelOfDifficulty: LevelOfDifficulty;
 
   @ApiProperty({ description: 'test case', example: {} })
   @IsArray()
